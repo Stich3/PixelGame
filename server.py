@@ -24,9 +24,9 @@ def update_pixels():
         if 0 <= x < GRID_SIZE and 0 <= y < GRID_SIZE:
             pixels[y][x] = color
         else:
-            return jsonify({"status": "error", "message": "Invalid coordinates"}), 400
+            return jsonify({"status": "error", "message": "Invalid coordinates"}), 400 #Помилка
     
-    return jsonify({"status": "success"})
+    return jsonify({"status": "success"}) #Працює
 
 if __name__ == '__main__':
     app.run(debug=True)
