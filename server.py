@@ -8,6 +8,8 @@ pixels = [["#FFFFFF" for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
 
 @app.route('/', methods=['GET', 'HEAD'])
 def index():
+    if request.method == 'HEAD':
+        return '', 200  # Порожня відповідь для HEAD
     return render_template('index.html')
 
 @app.route('/get_grid', methods=['GET'])
