@@ -1,0 +1,44 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <title>Pixel Grid</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(30, 15px);
+            grid-template-rows: repeat(30, 15px);
+            gap: 1px;
+        }
+        .pixel {
+            width: 15px;
+            height: 15px;
+            background-color: #3a3a3a;
+            border: 1px solid #3a3a3a;
+        }
+    </style>
+    <script>
+        function fetchGrid() {
+            fetch("/get_grid")
+                .then(response => response.json())
+                .then(data => {
+                    const grid = document.getElementById("grid");
+                    grid.innerHTML = "";
+                    for (let y = 0; y < data.length; y++) {
+                        for (let x = 0; x < data[y].length; x++) {
+                            let pixel = document.createElement("div");
+                            pixel.className = "pixel";
+                            pixel.style.backgroundColor = data[y][x];
+                            grid.appendChild(pixel);
+                        }
+                    }
+                });
+        }
+        setInterval(fetchGrid, 1000);
+        document.addEventListener("DOMContentLoaded", fetchGrid);
+    </script>
+</head>
+<body>
+    <h1>Pixel Grid</h1>
+    <div class="grid" id="grid"></div>
+</body>
+</html>
