@@ -6,7 +6,7 @@ app = Flask(__name__)
 GRID_SIZE = 30
 pixels = [["#FFFFFF" for _ in range(GRID_SIZE)] for _ in range(GRID_SIZE)]
 
-@app.route('/')
+@app.route('/', methods=['GET', 'HEAD'])
 def index():
     return render_template('index.html')
 
